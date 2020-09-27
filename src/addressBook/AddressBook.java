@@ -39,6 +39,26 @@ public class AddressBook {
 		
 	}
 	
+	public void delete() {
+		
+		System.out.println("Enter First Name");
+		String firstName = myObj.nextLine();
+		System.out.println("Enter Last Name");
+		String lastName = myObj.nextLine();
+		
+		
+		for(int i=0;i<contactList.size();i++) {
+			
+			if((contactList.get(i).firstName.equals(firstName) ) && (contactList.get(i).lastName.equals(lastName) )) {
+				
+				contactList.remove(i);				
+				System.out.println("Contact Deleted");
+			}
+		}
+		
+		
+		
+	}
 	
 	
 	public void displayAllContacts() {
@@ -114,6 +134,9 @@ public class AddressBook {
 		address.editUsingName();
 		System.out.println("============================================");
 		address.displayAllContacts();
+		System.out.println("============================================");
+		address.delete();
+		
 		
 		
 	}
