@@ -61,21 +61,22 @@ public class AddressBook {
 	}
 	
 	
+	
+	
 	public void displayAllContacts() {
 		
 		for(int i = 0;i<contactList.size();i++) {
 			
 			Contacts e = contactList.get(i);
+			System.out.println("Printing Details for "+contactList.get(i).firstName+ " " + contactList.get(i).lastName);
 			
-			System.out.println(e.firstName);
-			System.out.println(e.lastName);
 			System.out.println(e.Address);
 			System.out.println(e.City);
 			System.out.println(e.State);
 			System.out.println(e.zip);
 			System.out.println(e.phoneNumber);
 			System.out.println(e.email);
-			
+			System.out.println("========================");
 			
 		}
 		
@@ -122,25 +123,11 @@ public class AddressBook {
 
 	
 	
-	public static void main(String[] args) {
-		
-		System.out.println("Welcome to AddressBook Assignment");
-		
-		AddressBook address = new AddressBook();
-		address.addAdress();
-		System.out.println("============================================");
-		address.displayAllContacts();
-		System.out.println("============================================");
-		address.editUsingName();
-		System.out.println("============================================");
-		address.displayAllContacts();
-		System.out.println("============================================");
-		address.delete();
-		
+
 		
 		
 	}
 	
 	
 	
-}
+
