@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class AddressBook {
 	private LinkedList<Contacts>  contactList;
+	Scanner myObj = new Scanner(System.in);
 	
 	public AddressBook() {
 		
@@ -13,8 +14,8 @@ public class AddressBook {
 		
 	}
 	
-	public LinkedList<Contacts> addAdress() {
-		Scanner myObj = new Scanner(System.in);
+	public void addAdress() {
+		
 		System.out.println("Enter First Name");
 		String firstName = myObj.nextLine();
 		System.out.println("Enter Last Name");
@@ -31,11 +32,11 @@ public class AddressBook {
 		String phoneNumber = myObj.nextLine();
 		System.out.println("Enter Email Address");
 		String email = myObj.nextLine();
-		myObj.close();
+		
 		Contacts contacts = new Contacts(firstName,lastName,Address,City,State,zip,phoneNumber,email);
 		contactList.add(contacts);
 		
-		return null;
+		
 	}
 	
 	
@@ -59,6 +60,45 @@ public class AddressBook {
 		}
 		
 	}
+	
+	public void editUsingName() {
+		
+		System.out.println("Enter First Name");
+		String firstName = myObj.nextLine();
+		System.out.println("Enter Last Name");
+		String lastName = myObj.nextLine();
+		
+		
+		for(int i=0;i<contactList.size();i++) {
+			
+			if((contactList.get(i).firstName.equals(firstName) ) && (contactList.get(i).lastName.equals(lastName) )) {
+				
+				System.out.println("Enter New First Name");
+				contactList.get(i).firstName = myObj.nextLine();
+				System.out.println("Enter New Last Name");
+				contactList.get(i).lastName = myObj.nextLine();
+				System.out.println("Enter New Address");
+				contactList.get(i).Address = myObj.nextLine();
+				System.out.println("Enter New City");
+				contactList.get(i).City = myObj.nextLine(); 
+				System.out.println("Enter New State");
+				contactList.get(i).State = myObj.nextLine();
+				System.out.println("Enter New zip Code");
+				contactList.get(i).zip = myObj.nextLine();
+				System.out.println("Enter New Phone Number");
+				contactList.get(i).phoneNumber = myObj.nextLine();
+				System.out.println("Enter New Email Address");
+				contactList.get(i).email = myObj.nextLine();
+				
+			}
+			else
+				System.out.println("Entry Not Found");
+			
+		}
+		
+		
+		
+	}
 
 	
 	
@@ -68,7 +108,13 @@ public class AddressBook {
 		
 		AddressBook address = new AddressBook();
 		address.addAdress();
+		System.out.println("============================================");
 		address.displayAllContacts();
+		System.out.println("============================================");
+		address.editUsingName();
+		System.out.println("============================================");
+		address.displayAllContacts();
+		
 		
 	}
 	
