@@ -43,9 +43,13 @@ public class DriverClass {
 			case 2: System.out.println("Enter Address Book name");
 					Scanner myObj3 = new Scanner(System.in);
 					String addressBookName = myObj3.nextLine();
+					
 					AddressBook e = AddressBookMap.get(addressBookName);
 					if(e==null) {
 						System.out.println("AddressBook Not Found");
+						System.out.println("Creating New AddressBook");
+						AddressBook addressBook = new AddressBook();
+						MapAddress(addressBook);
 						continue;
 					
 					}
@@ -58,6 +62,7 @@ public class DriverClass {
 					AddressBook e1 = AddressBookMap.get(addressBookName1);
 					if(e1==null) {
 						System.out.println("AddressBook Not Found");
+						
 						continue;
 					
 					}
