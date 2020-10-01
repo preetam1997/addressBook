@@ -32,8 +32,6 @@ public class Contacts {
 	         return false;
 	      }
 	      Contacts c = (Contacts) obj;
-	      return firstName.equals(c.firstName)&& lastName.equals(c.lastName) && Address.equals(c.Address)
-	    		  && City.equals(c.City) && State.equals(c.State) && zip.equals(c.zip) && phoneNumber.equals(c.phoneNumber)
-	    		  && email.equals(c.email);
+	      return firstName.equals(c.firstName)&& lastName.equals(c.lastName);
 	   }
 }

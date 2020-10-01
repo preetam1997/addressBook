@@ -21,8 +21,6 @@ public class AddressBook {
 		String firstName = myObj.nextLine();
 		System.out.println("Enter Last Name");
 		String lastName = myObj.nextLine();
-		
-		
 		System.out.println("Enter Address");
 		String Address = myObj.nextLine();
 		System.out.println("Enter City");
@@ -37,7 +35,7 @@ public class AddressBook {
 		String email = myObj.nextLine();
 		Contacts contacts = new Contacts(firstName,lastName,Address,City,State,zip,phoneNumber,email);
 		
-		if(hasDuplicate(firstName, lastName, contacts))
+		if(hasDuplicate( contacts))
 		{
 			System.out.println("Contact Already Exists");
 		}
@@ -133,24 +131,52 @@ public class AddressBook {
 	}
 	
 	
-	public boolean hasDuplicate(String fName,String lName,Object o) {
+	public boolean hasDuplicate(Object o) {
 		
 		Iterator<Contacts> itr = contactList.iterator();
 		while(itr.hasNext() ){
 			Contacts c = itr.next();
 			
-			if(c.firstName.matches(fName) && c.lastName.matches(lName))
-			{
-				if(c.equals(o)) {
-					
-					return true;
-					
+			if(c.equals(o)) {
+				return true;
 				}
-				else
-					return false;
-			}
+			else
+				return false;
+			
 		}
 		return false;
+	}
+	
+	public void SearchNameByCity(String city) {
+		
+		Iterator<Contacts> itr = contactList.iterator();
+		while(itr.hasNext() ){
+			Contacts c = itr.next();
+			
+			if(c.City.matches(city))
+			{
+				System.out.println(c.firstName+" "+c.lastName);
+			}
+			
+			
+		}
+		
+	}
+	
+	public void SearchNameByState(String State) {
+		
+		Iterator<Contacts> itr = contactList.iterator();
+		while(itr.hasNext() ){
+			Contacts c = itr.next();
+			
+			if(c.State.matches(State))
+			{
+				System.out.println(c.firstName+" "+c.lastName);
+			}
+			
+			
+		}
+		
 	}
 	
 	

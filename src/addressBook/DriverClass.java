@@ -1,6 +1,8 @@
 package addressBook;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -8,13 +10,16 @@ public class DriverClass {
 	
 	private static Map<String, AddressBook> AddressBookMap = new HashMap<String, AddressBook>();
 	public static Scanner myObj = new Scanner(System.in);
-	
+	private static LinkedList<String>  addressList = new LinkedList<String>();
+	private static Map<Contacts, String> PersonToCity = new HashMap<Contacts, String>();
+	private static Map<Contacts, String> PersonToState = new HashMap<Contacts, String>();
 	
 	
 	public static void MapAddress(AddressBook e) {
 		
 		System.out.println("Enter Address Book Name");
 		String AddressBookName = myObj.nextLine();
+		addressList.add(AddressBookName);
 		
 		AddressBookMap.put(AddressBookName, e);
 		
@@ -30,13 +35,14 @@ public class DriverClass {
 			System.out.println("3.UC3 Edit Entry Based on Name");
 			System.out.println("4.UC4 Delete Entry Based on Name");
 			System.out.println("5.Display Contacts");
-			System.out.println("6.Exit");
+			System.out.println("6.UC8 Search by City Name");
+			System.out.println("7.UC8 Search by State Name");
+			System.out.println("8.Exit");
 			System.out.println("Enter your choice:");
 			int choice = myObj.nextInt();
 			switch(choice) {
 			
 			case 1: AddressBook addressbook = new AddressBook();
-					//addressbook.addAdress();
 					MapAddress(addressbook);
 					break;
 					
@@ -94,7 +100,41 @@ public class DriverClass {
 					e3.displayAllContacts();
 					break;
 					
-			case 6: return;
+			case 6:	System.out.println("Enter City name");
+					Scanner myObj6 = new Scanner(System.in);
+					String city = myObj6.nextLine();
+					Iterator<String> itr = addressList.iterator();
+					while(itr.hasNext()) {
+						String str = itr.next();
+						System.out.println("In address book "+ str);
+						AddressBook e4 = AddressBookMap.get(str);
+						if(e4==null) {
+							System.out.println("AddressBook Not Found");
+							continue;
+						}
+						
+						e4.SearchNameByCity(city);
+					}
+					break;
+					
+			case 7:System.out.println("Enter State name");
+					Scanner myObj7 = new Scanner(System.in);
+					String State = myObj7.nextLine();
+					Iterator<String> itr1 = addressList.iterator();
+					while(itr1.hasNext()) {
+						String str = itr1.next();
+						System.out.println("In address book "+ str);
+						AddressBook e4 = AddressBookMap.get(str);
+						if(e4==null) {
+							System.out.println("AddressBook Not Found");
+							continue;
+						}
+				
+						e4.SearchNameByState(State);
+					}
+					break;
+					
+			case 8: return;
 			}
 		
 	}
