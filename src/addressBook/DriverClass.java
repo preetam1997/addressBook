@@ -61,7 +61,9 @@ public class DriverClass {
 			System.out.println("7.UC8 Search by State Name");
 			System.out.println("8.UC9 Search by City Name (Person Mapping)");
 			System.out.println("9.UC9 Search by State Name (Person Mapping)");
-			System.out.println("10.Exit");
+			System.out.println("10.UC10 Count Persons in a City");
+			System.out.println("11.UC10 Count Persons in a State");
+			System.out.println("12.Exit");
 			System.out.println("Enter your choice:");
 			int choice = myObj.nextInt();
 			switch(choice) {
@@ -184,7 +186,18 @@ public class DriverClass {
 					}
 					break;
 					
-			case 10: return;
+			case 10:System.out.println("Enter City Name (Person Mapping)");
+					Scanner myObj10 = new Scanner(System.in);
+					String City1 = myObj10.nextLine();
+					System.out.println(PersonToCity.get(City1).size());
+					break;
+			
+			case 11:System.out.println("Enter State Name (Person Mapping)");
+					Scanner myObj11 = new Scanner(System.in);
+					String State1 = myObj11.nextLine();
+					System.out.println(PersonToCity.get(State1).size());
+					
+			case 12: return;
 			}
 		
 	}
