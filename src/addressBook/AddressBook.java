@@ -15,7 +15,7 @@ public class AddressBook {
 		
 	}
 	
-	public void addAdress() {
+	public Contacts addAdress() {
 		
 		System.out.println("Enter First Name");
 		String firstName = myObj.nextLine();
@@ -38,11 +38,14 @@ public class AddressBook {
 		if(hasDuplicate( contacts))
 		{
 			System.out.println("Contact Already Exists");
+			return null;
 		}
 		else 
 		{
 			contactList.add(contacts);
+			return contacts;
 		}
+		
 		
 			
 		

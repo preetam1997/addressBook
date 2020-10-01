@@ -11,8 +11,8 @@ public class DriverClass {
 	private static Map<String, AddressBook> AddressBookMap = new HashMap<String, AddressBook>();
 	public static Scanner myObj = new Scanner(System.in);
 	private static LinkedList<String>  addressList = new LinkedList<String>();
-	private static Map<Contacts, String> PersonToCity = new HashMap<Contacts, String>();
-	private static Map<Contacts, String> PersonToState = new HashMap<Contacts, String>();
+	private static Map<String,LinkedList> PersonToCity = new HashMap<String,LinkedList>();
+	private static Map<String,LinkedList> PersonToState = new HashMap<String,LinkedList>();
 	
 	
 	public static void MapAddress(AddressBook e) {
@@ -22,6 +22,28 @@ public class DriverClass {
 		addressList.add(AddressBookName);
 		
 		AddressBookMap.put(AddressBookName, e);
+		
+	}
+	
+	public static void MapPerson(Contacts c) {
+		if(c!=null) {
+			if(PersonToCity.containsKey(c.City))
+				PersonToCity.get(c.City).add(c);
+			else {
+				LinkedList<Contacts>  ContactByCity = new LinkedList<Contacts>();
+				ContactByCity.add(c);
+				PersonToCity.put(c.City,ContactByCity);
+			}
+			if(PersonToState.containsKey(c.City))
+				PersonToState.get(c.City).add(c);
+			else {
+				LinkedList<Contacts>  ContactByState = new LinkedList<Contacts>();
+				ContactByState.add(c);
+				PersonToState.put(c.City,ContactByState);
+			}	
+		}
+		
+		
 		
 	}
 	public static void main(String[] args) {
@@ -37,7 +59,9 @@ public class DriverClass {
 			System.out.println("5.Display Contacts");
 			System.out.println("6.UC8 Search by City Name");
 			System.out.println("7.UC8 Search by State Name");
-			System.out.println("8.Exit");
+			System.out.println("8.UC9 Search by City Name (Person Mapping)");
+			System.out.println("9.UC9 Search by State Name (Person Mapping)");
+			System.out.println("10.Exit");
 			System.out.println("Enter your choice:");
 			int choice = myObj.nextInt();
 			switch(choice) {
@@ -59,7 +83,9 @@ public class DriverClass {
 						continue;
 					
 					}
-					e.addAdress();
+					Contacts c= e.addAdress();
+					MapPerson(c);
+					
 					break;
 			
 			case 3: System.out.println("Enter Address Book name");
@@ -134,7 +160,31 @@ public class DriverClass {
 					}
 					break;
 					
-			case 8: return;
+			case 8: System.out.println("Enter City Name (Person Mapping)");
+					Scanner myObj8 = new Scanner(System.in);
+					String City = myObj8.nextLine();
+					
+					Iterator<Contacts> itr2 = PersonToCity.get(City).iterator();
+					while(itr2.hasNext())
+					{	
+						Contacts ct = itr2.next();
+						System.out.println(ct.firstName+" "+ct.lastName);
+					}
+					break;
+					
+			case 9: System.out.println("Enter State Name (Person Mapping)");
+					Scanner myObj9 = new Scanner(System.in);
+					String state = myObj9.nextLine();
+			
+					Iterator<Contacts> iter = PersonToCity.get(state).iterator();
+					while(iter.hasNext())
+					{	
+						Contacts st = iter.next();
+						System.out.println(st.firstName+" "+st.lastName);
+					}
+					break;
+					
+			case 10: return;
 			}
 		
 	}
