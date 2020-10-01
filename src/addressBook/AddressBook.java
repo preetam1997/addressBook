@@ -1,5 +1,6 @@
 package addressBook;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -20,6 +21,8 @@ public class AddressBook {
 		String firstName = myObj.nextLine();
 		System.out.println("Enter Last Name");
 		String lastName = myObj.nextLine();
+		
+		
 		System.out.println("Enter Address");
 		String Address = myObj.nextLine();
 		System.out.println("Enter City");
@@ -32,10 +35,18 @@ public class AddressBook {
 		String phoneNumber = myObj.nextLine();
 		System.out.println("Enter Email Address");
 		String email = myObj.nextLine();
-		
 		Contacts contacts = new Contacts(firstName,lastName,Address,City,State,zip,phoneNumber,email);
-		contactList.add(contacts);
 		
+		if(hasDuplicate(firstName, lastName, contacts))
+		{
+			System.out.println("Contact Already Exists");
+		}
+		else 
+		{
+			contactList.add(contacts);
+		}
+		
+			
 		
 	}
 	
@@ -120,14 +131,28 @@ public class AddressBook {
 		
 		
 	}
-
 	
 	
-
+	public boolean hasDuplicate(String fName,String lName,Object o) {
 		
-		
+		Iterator<Contacts> itr = contactList.iterator();
+		while(itr.hasNext() ){
+			Contacts c = itr.next();
+			
+			if(c.firstName.matches(fName) && c.lastName.matches(lName))
+			{
+				if(c.equals(o)) {
+					
+					return true;
+					
+				}
+				else
+					return false;
+			}
+		}
+		return false;
 	}
 	
 	
 	
-
+}
