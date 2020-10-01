@@ -196,6 +196,7 @@ public class DriverClass {
 					Scanner myObj11 = new Scanner(System.in);
 					String State1 = myObj11.nextLine();
 					System.out.println(PersonToCity.get(State1).size());
+					break;
 					
 			case 12: return;
 			}
